@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="给已安装 WorkBuddy 的 Windows 小白：用 DeepSeek V4.1 Flash 的图文教程。" />
+  <meta name="color-scheme" content="light dark" />
+  <title>WorkBuddy + DeepSeek V4.1 Flash 小白使用指南</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+  <div id="progress" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="阅读进度"></div>
+
+  <header class="topbar">
+    <button type="button" class="icon-btn" id="toc-toggle" aria-label="打开目录">☰</button>
+    <a class="topbar-brand" href="#top">WorkBuddy + DeepSeek 小白指南</a>
+    <div class="topbar-actions">
+      <button type="button" class="icon-btn" id="theme-toggle" aria-label="切换深色模式">🌙</button>
+    </div>
+  </header>
+
+  <div class="toc-drawer" id="toc-drawer" aria-hidden="true">
+    <div class="toc-drawer-backdrop"></div>
+    <nav class="toc-drawer-panel" aria-label="移动端目录">
+      <button type="button" class="icon-btn" id="toc-close" aria-label="关闭目录">✕</button>
+      <h2>目录</h2>
+      <ul>
+        <li><a href="#chooser">我应该用哪个？</a></li>
+        <li><a href="#builtin">① 已内置怎么用</a></li>
+        <li><a href="#custom-api">② 自接 API 配置</a></li>
+        <li><a href="#first-use">③ 第一次用</a></li>
+        <li><a href="#prompts">④ Prompt 示例</a></li>
+        <li><a href="#faq">⑤ FAQ</a></li>
+        <li><a href="#pi-desktop">⑥ 何时装 PI-Desktop</a></li>
+        <li><a href="#harness">⑦ Harness 是什么</a></li>
+        <li><a href="#safety">⑧ 安全与防烧钱</a></li>
+        <li><a href="#links">参考链接</a></li>
+      </ul>
+    </nav>
+  </div>
+
+  <div class="layout">
+    <nav class="toc" aria-label="章节目录">
+      <h2>目录</h2>
+      <ul>
+        <li><a href="#chooser">我应该用哪个？</a></li>
+        <li><a href="#builtin">① 已内置怎么用</a></li>
+        <li><a href="#custom-api">② 自接 API 配置</a></li>
+        <li><a href="#first-use">③ 第一次用</a></li>
+        <li><a href="#prompts">④ Prompt 示例</a></li>
+        <li><a href="#faq">⑤ FAQ</a></li>
+        <li><a href="#pi-desktop">⑥ 何时装 PI-Desktop</a></li>
+        <li><a href="#harness">⑦ Harness 是什么</a></li>
+        <li><a href="#safety">⑧ 安全与防烧钱</a></li>
+        <li><a href="#links">参考链接</a></li>
+      </ul>
+    </nav>
+
+    <main class="main" id="top">
+      <header class="hero">
+        <h1>WorkBuddy + DeepSeek V4.1 Flash<br />小白使用指南</h1>
+        <p class="subtitle">已经有 WorkBuddy？从这里开始，不折腾复杂环境，也能把 DeepSeek 用起来。</p>
+        <div class="entry-cards">
+          <a class="entry-card" href="#builtin">
+            <strong>我已经有 WorkBuddy，直接开始</strong>
+            <span>主线：选模型 → 试第一句 → 常用场景</span>
+          </a>
+          <a class="entry-card" href="#custom-api">
+            <strong>我想了解 DeepSeek</strong>
+            <span>自接 API、计费注意、Key 安全</span>
+          </a>
+          <a class="entry-card" href="#pi-desktop">
+            <strong>我以后主要想写代码</strong>
+            <span>进阶：PI-Desktop / Harness（都非必须）</span>
+          </a>
+        </div>
+      </header>
+
+      <section class="block" id="chooser">
+        <h2>我应该用哪个？</h2>
+        <p>点一个最像你的情况：</p>
+        <div class="selector" role="group" aria-label="产品选择">
+          <button type="button" class="selector-option" data-selector="office">我主要办公、写东西、整理资料</button>
+          <button type="button" class="selector-option" data-selector="coding">我以后主要写代码 / 要更强 Agent</button>
+          <button type="button" class="selector-option" data-selector="harness">我想用官方 Agent 工作流</button>
+          <button type="button" class="selector-option" data-selector="first">我是第一次用，什么都懵</button>
+        </div>
+        <div id="selector-result" class="selector-result callout callout-success" role="status">
+          <div id="selector-result-text"></div>
+        </div>
+      </section>
+
+      <section class="block" id="builtin">
+        <h2>① 已内置怎么用</h2>
+        <p>WorkBuddy <strong>已经内置</strong> DeepSeek（Flash / Pro 档）。日常办公直接用内置即可，不必先去申请 API。</p>
+        <ol>
+          <li>打开 WorkBuddy。</li>
+          <li>在模型列表里选 DeepSeek 的 <strong>Flash / 速度档</strong>。软件里可能显示成 <code>Deepseek-V4-Flash</code>，以你界面上的名字为准。</li>
+          <li>模式档位不确定就选 <strong>「均衡」</strong> 起步；简单润色可用「快速」，很难的长任务再用「极致」。</li>
+          <li>上下文窗口别一上来开到最大，窗口越大越费积分。</li>
+        </ol>
+        <div class="callout callout-success">
+          <strong>内置 vs 自己接 API</strong>
+          内置：走 WorkBuddy 自己的积分 / 套餐。自接：走你 DeepSeek 账户账单；API Key 只保存在你本机，不上传云端。
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="#first-use">下一步：第一次用</a>
+          <a class="btn btn-secondary" href="#custom-api">我要自己接 API</a>
+        </div>
+      </section>
+
+      <section class="block" id="custom-api">
+        <h2>② 自接 API 配置</h2>
+        <p><strong>优先用界面</strong>：设置 → 模型 → 添加自定义模型。小白不必先改文件。</p>
+        <h3>界面里填什么</h3>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>项</th><th>填法</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>URL</td><td><code>https://api.deepseek.com/v1/chat/completions</code></td></tr>
+              <tr><td>模型名</td><td><code>deepseek-flash</code>（对应 V4.1-Flash）</td></tr>
+              <tr><td>API Key</td><td>你自己的 Key；本教程只写占位符 <code>YOUR_DEEPSEEK_API_KEY</code></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>旧教程里的 <code>deepseek-v4-flash</code> 多半仍可用，但请优先用新名 <code>deepseek-flash</code>。Pro 用 <code>deepseek-v4-pro</code>（易变，新手不必追）。</p>
+        <h3>可选：环境变量（进阶）</h3>
+        <div class="pre-wrap">
+<pre><code>setx DEEPSEEK_API_KEY "YOUR_DEEPSEEK_API_KEY"</code></pre>
+        </div>
+        <p>然后在配置里把 Key 写成引用：</p>
+        <div class="pre-wrap">
+<pre><code>"apiKey": "${DEEPSEEK_API_KEY}"</code></pre>
+        </div>
+        <div class="callout callout-warn">
+          <strong>改完配置要完全退出再打开 WorkBuddy</strong>
+          若必须手改 <code>models.json</code>：在用户目录下搜索该文件，常见文件夹是 <code>.workbuddy</code> 或 <code>.codebuddy</code>，以你本机实际为准。请用 UTF-8（无 BOM）保存。
+        </div>
+        <p>申请 Key：打开 <a href="https://platform.deepseek.com/api_keys" rel="noopener noreferrer" target="_blank">DeepSeek 开放平台 API Keys</a>（需登录）→ 新建 → 立刻复制保存。</p>
+        <div class="btn-row">
+          <a class="btn" href="#first-use">下一步：第一次用</a>
+          <a class="btn btn-secondary" href="#safety">先看防烧钱</a>
+        </div>
+      </section>
+
+      <section class="block" id="first-use">
+        <h2>③ 第一次用</h2>
+        <ol>
+          <li>打开 WorkBuddy，选好 DeepSeek Flash（或界面等价名字）。</li>
+          <li>模式选「均衡」。</li>
+          <li>在对话框输入一句简单请求，例如：「用三句话介绍你自己，并告诉我现在用的是哪个模型。」</li>
+          <li>能正常回复，就说明主线通了。</li>
+        </ol>
+        <h3>常见故障</h3>
+        <div class="callout callout-error">
+          <strong>401</strong>
+          多半是 API Key 抄错，或把网址填进了 Key 栏。重新核对 Key。
+        </div>
+        <div class="callout callout-error">
+          <strong>404 / Model Not Found</strong>
+          模型名写错或带了多余空格。自接时请精确填写 <code>deepseek-flash</code>。
+        </div>
+        <div class="callout callout-warn">
+          <strong>配置不生效</strong>
+          检查 JSON 是否合法、是否带了 UTF-8 BOM、以及是否已完全重启 WorkBuddy。
+        </div>
+        <div class="btn-row">
+          <a class="btn" href="#prompts">下一步：Prompt 示例</a>
+        </div>
+      </section>
+
+      <section class="block" id="prompts">
+        <h2>④ Prompt 示例</h2>
+        <p>下面每条都可以直接复制改成你的内容。不涉及未核实的技术配置。</p>
+
+        <h3>1. 整理 Excel 思路</h3>
+        <div class="pre-wrap">
+<pre><code>我有一份销售表，列名是：日期、客户、金额、负责人。
+请告诉我：用筛选和数据透视大概怎么做月汇总，
+步骤写给完全没学过的人，一步一步来。</code></pre>
+        </div>
+
+        <h3>2. 读 PDF 后提炼要点</h3>
+        <div class="pre-wrap">
+<pre><code>下面是一段会议材料（我粘贴正文）。
+请用条目列出：已决定事项、待确认事项、需要我跟进的人。
+不要编造原文没有的信息。</code></pre>
+        </div>
+
+        <h3>3. 整理乱七八糟的文件夹命名</h3>
+        <div class="pre-wrap">
+<pre><code>我想给「工作文档」文件夹定命名规则。
+场景：合同、报价、会议纪要、截图。
+请给一个简单规则，并各举 3 个文件名例子。</code></pre>
+        </div>
+
+        <h3>4. 改一封礼貌邮件</h3>
+        <div class="pre-wrap">
+<pre><code>请把下面这段话改得更礼貌、更短，保留原意：
+「那个东西你赶紧给我，明天要用。」</code></pre>
+        </div>
+
+        <h3>5. 会议纪要 → 待办</h3>
+        <div class="pre-wrap">
+<pre><code>把下面口语纪要整理成待办列表。
+每条包含：谁做、做什么、大概什么时候。
+原文没有负责人就写「待指定」。</code></pre>
+        </div>
+
+        <h3>6. 大白话解释概念</h3>
+        <div class="pre-wrap">
+<pre><code>请用小学五年级能听懂的话解释：什么是 API Key，
+为什么不能发给陌生人。</code></pre>
+        </div>
+
+        <h3>7. 长文缩成三条</h3>
+        <div class="pre-wrap">
+<pre><code>把下面文章缩成最多 3 条要点，每条不超过 25 字。
+不要评价，只提炼事实。</code></pre>
+        </div>
+
+        <h3>8. 查错别字与语气</h3>
+        <div class="pre-wrap">
+<pre><code>请检查下文错别字和标点，并标出语气过冲的句子，
+给出更稳妥的改写，保留原意。</code></pre>
+        </div>
+
+        <h3>9. 温柔但坚定的催办</h3>
+        <div class="pre-wrap">
+<pre><code>帮我写一条催办消息：对方答应周五给材料，今天周一还没给。
+语气友好但要说清截止时间和我需要的具体附件。</code></pre>
+        </div>
+
+        <h3>10. 对比两个方案</h3>
+        <div class="pre-wrap">
+<pre><code>方案 A：继续只用 WorkBuddy 内置模型。
+方案 B：自己接 DeepSeek API。
+请用表格对比：费用谁出、要不要管 Key、适合谁。不要劝我买课。</code></pre>
+        </div>
+
+        <div class="btn-row">
+          <a class="btn" href="#faq">下一步：FAQ</a>
+        </div>
+      </section>
+
+      <section class="block" id="faq">
+        <h2>⑤ FAQ</h2>
+        <div class="faq">
+          <details><summary>API Key 是什么？</summary>
+            <div class="faq-body">可以把它理解成你账户的「钥匙」：程序用它证明「请求是你发的」。它像密码——不能发群、不能截图公开、不能提交到 GitHub。本教程里只写占位符 <code>YOUR_DEEPSEEK_API_KEY</code>，请换成你自己在 DeepSeek 开放平台创建的 Key。</div></details>
+          <details><summary>配置后为什么不生效？</summary>
+            <div class="faq-body">常见原因：JSON 写坏了、文件用了带 BOM 的编码、或者改完没有<strong>完全退出再打开</strong> WorkBuddy。自接时再核对 URL、模型名 <code>deepseek-flash</code>、Key 是否填对栏位。优先用设置界面添加模型，比手改文件更稳。</div></details>
+          <details><summary>长任务循环怎么办？</summary>
+            <div class="faq-body">Agent / 长任务会多次调用模型，Token 和积分消耗明显高于单次聊天。先做短任务；内置看 WorkBuddy 额度，自接盯 DeepSeek 账单。若它一直转圈，先停掉任务，缩小范围再试。Harness、PI-Desktop 都<strong>非必须</strong>，办公日常继续用 WorkBuddy 即可。</div></details>
+
+          <details><summary>1. WorkBuddy 里怎么找到 DeepSeek？</summary>
+            <div class="faq-body">打开模型列表，选 DeepSeek 的 Flash / 速度档。界面可能显示 <code>Deepseek-V4-Flash</code>，以软件为准。没有的话再走「自接 API」。</div></details>
+          <details><summary>2. 内置模型和自己接 API 有什么区别？</summary>
+            <div class="faq-body">内置走 WorkBuddy 积分；自接走你 DeepSeek 账单。自接时 Key 只存在本机。</div></details>
+          <details><summary>3. Model ID 应该填什么？</summary>
+            <div class="faq-body">自接统一填 <code>deepseek-flash</code>。旧名 <code>deepseek-v4-flash</code> 多半仍可用，优先新名。Pro 用 <code>deepseek-v4-pro</code>（易变）。</div></details>
+          <details><summary>4. Base URL 填什么？</summary>
+            <div class="faq-body"><code>https://api.deepseek.com/v1/chat/completions</code></div></details>
+          <details><summary>5. API Key 在哪里创建？</summary>
+            <div class="faq-body">到 <a href="https://platform.deepseek.com/api_keys" rel="noopener noreferrer" target="_blank">platform.deepseek.com/api_keys</a> 登录后新建。教程里只会出现 <code>YOUR_DEEPSEEK_API_KEY</code>。</div></details>
+          <details><summary>6. 出现 401 怎么办？</summary>
+            <div class="faq-body">Key 不对，或把 URL 填进了 Key 栏。重新复制 Key 并确认填对栏位。</div></details>
+          <details><summary>7. 出现 404 或 Model Not Found 怎么办？</summary>
+            <div class="faq-body">模型名写错。请精确使用 <code>deepseek-flash</code>，去掉多余空格。</div></details>
+          <details><summary>8. Flash 和 Pro 怎么选？</summary>
+            <div class="faq-body">新手优先 Flash。Pro 更贵且政策易变，默认不必追 Pro。</div></details>
+          <details><summary>9. 会不会很贵？怎么防烧钱？</summary>
+            <div class="faq-body">内置看 WorkBuddy 积分；自接看 DeepSeek 账单。少开超大上下文、少跑超长 Agent 任务。价格以官网当天为准（易变）。详见「⑧ 安全与防烧钱」。</div></details>
+          <details><summary>10. models.json 在 Windows 的哪个路径？</summary>
+            <div class="faq-body">优先用设置界面。非要改文件：在用户目录搜索 <code>models.json</code>，常见 <code>.workbuddy</code> / <code>.codebuddy</code>，以本机实际为准；UTF-8 无 BOM，改完完全重启。</div></details>
+          <details><summary>11. 要不要装 Node / 命令行？</summary>
+            <div class="faq-body">WorkBuddy 主线不需要。只有自己玩 Harness 官网 <code>npx</code> 路径时才需要 Node。</div></details>
+          <details><summary>12. 什么时候才需要 PI-Desktop？</summary>
+            <div class="faq-body">办公继续用 WorkBuddy。以后主要写代码、要更强多模型 Agent，再考虑 PI-Desktop。它是 Early Preview，且<strong>非必须</strong>。</div></details>
+          <details><summary>13. DeepSeek Harness 必须装吗？</summary>
+            <div class="faq-body"><strong>不必。</strong> 它是官方公测 Agent 工作台。想体验按官网 <code>npx @deepseek-ai/dsh web</code>；不要下不明 exe。</div></details>
+          <details><summary>14. 我需要 Codex / ChatGPT 吗？</summary>
+            <div class="faq-body">不必。本教程主线是 WorkBuddy + DeepSeek。不必为了本教程再装 Codex、ChatGPT、Harness 或 PI。</div></details>
+          <details><summary>15. 深色模式怎么开？</summary>
+            <div class="faq-body">点本页右上角月亮 / 太阳按钮，选择会记住。</div></details>
+          <details><summary>16. 代码块怎么复制？</summary>
+            <div class="faq-body">点代码右上角「复制」。</div></details>
+          <details><summary>17. Key 可以发给同事帮忙排查吗？</summary>
+            <div class="faq-body"><strong>不可以。</strong> Key 当密码：不进群、不进截图、不进 GitHub。泄露了就去平台作废并换新。</div></details>
+        </div>
+      </section>
+
+      <section class="block" id="pi-desktop">
+        <h2>⑥ 何时装 PI-Desktop</h2>
+        <p><strong>非必须。</strong> 已经会用 WorkBuddy 办公的小白，可以完全跳过本章。</p>
+        <ul>
+          <li>官方仓库：<a href="https://github.com/vastsa/PI-Desktop" rel="noopener noreferrer" target="_blank">vastsa/PI-Desktop</a></li>
+          <li>Windows 有安装包和 zip；用官方包<strong>不需要</strong>装 Node / Rust / pnpm</li>
+          <li>状态：Early Preview</li>
+          <li>可通过 OpenAI 兼容方式接入 DeepSeek（填地址 + <code>deepseek-flash</code> + Key）</li>
+        </ul>
+        <div class="callout callout-warn">
+          <strong>适合谁</strong>
+          以后主要写代码、想要更强 Agent / 多模型时再考虑。日常办公请继续 WorkBuddy。
+        </div>
+        <p>文档：<a href="https://pi-docs.aiuo.net/" rel="noopener noreferrer" target="_blank">pi-docs.aiuo.net</a> · 下载：<a href="https://github.com/vastsa/PI-Desktop/releases/latest" rel="noopener noreferrer" target="_blank">Releases</a></p>
+        <div class="btn-row">
+          <a class="btn btn-secondary" href="#harness">下一步：Harness 是什么</a>
+        </div>
+      </section>
+
+      <section class="block" id="harness">
+        <h2>⑦ Harness 是什么</h2>
+        <p>DeepSeek 官方的 Agent 工作台（公测 / Preview）。<strong>不是 WorkBuddy 必装项。</strong></p>
+        <p>进阶体验请按官网路径（需要先会装 Node）：</p>
+        <div class="pre-wrap">
+<pre><code>npx @deepseek-ai/dsh web</code></pre>
+        </div>
+        <div class="callout callout-warn">
+          <strong>注意</strong>
+          不要下载来路不明的 exe。长任务会多次调用模型，Token 消耗明显高于单次聊天。
+        </div>
+        <p>官网：<a href="https://www.deepseek.com/zh/harness/" rel="noopener noreferrer" target="_blank">deepseek.com/zh/harness</a> · 仓库：<a href="https://github.com/deepseek-ai/deepseek-harness" rel="noopener noreferrer" target="_blank">deepseek-ai/deepseek-harness</a></p>
+        <div class="btn-row">
+          <a class="btn btn-secondary" href="#safety">下一步：安全与防烧钱</a>
+        </div>
+      </section>
+
+      <section class="block" id="safety">
+        <h2>⑧ 安全与防烧钱</h2>
+        <div class="callout callout-error">
+          <strong>永远记住</strong>
+          <ul style="margin:8px 0 0;padding-left:1.2rem">
+            <li>API Key 等于钱包钥匙：不分享、不进截图、不提交 GitHub。</li>
+            <li>本站示例只有占位符：<code>YOUR_DEEPSEEK_API_KEY</code>。</li>
+            <li>价格与积分规则会变——以官网 / 软件当天显示为准。</li>
+          </ul>
+        </div>
+        <h3>DeepSeek API 价格参考（易变）</h3>
+        <p>单位：美元 / 百万 tokens。抓取参考日 2026-10-02，发布前请再核 <a href="https://api-docs.deepseek.com/quick_start/pricing" rel="noopener noreferrer" target="_blank">官方定价页</a>。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>项目</th><th>deepseek-flash</th><th>deepseek-v4-pro</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>输入·缓存命中·非高峰</td><td>$0.003</td><td>$0.022</td></tr>
+              <tr><td>输入·缓存命中·高峰</td><td>$0.006</td><td>$0.044</td></tr>
+              <tr><td>输入·缓存未命中·非高峰</td><td>$0.15</td><td>$0.66</td></tr>
+              <tr><td>输入·缓存未命中·高峰</td><td>$0.30</td><td>$1.32</td></tr>
+              <tr><td>输出·非高峰</td><td>$0.60</td><td>$1.98</td></tr>
+              <tr><td>输出·高峰</td><td>$1.20</td><td>$3.96</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p>省钱小提示：优先 Flash；控制上下文；短任务先试；自接时盯 DeepSeek 账单余额。</p>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr><th>检查项</th><th>本站要求</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>真实 API Key</td><td>禁止出现</td></tr>
+              <tr><td>真实邮箱 / 用户名 / 本机路径</td><td>禁止出现</td></tr>
+              <tr><td>占位符</td><td>YOUR_DEEPSEEK_API_KEY</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="block" id="links">
+        <h2>参考链接</h2>
+        <ul>
+          <li><a href="https://www.workbuddy.cn/docs/workbuddy/From-Beginner-to-Expert-Guide/Function-Description/Model" rel="noopener noreferrer" target="_blank">WorkBuddy 模型配置</a></li>
+          <li><a href="https://api-docs.deepseek.com/" rel="noopener noreferrer" target="_blank">DeepSeek API 文档</a></li>
+          <li><a href="https://api-docs.deepseek.com/quick_start/pricing" rel="noopener noreferrer" target="_blank">DeepSeek 定价</a></li>
+          <li><a href="https://api-docs.deepseek.com/quick_start/agent_integrations/workbuddy" rel="noopener noreferrer" target="_blank">DeepSeek × WorkBuddy 接入</a></li>
+          <li><a href="https://api-docs.deepseek.com/news/news260910" rel="noopener noreferrer" target="_blank">V4.1-Flash 发布说明</a></li>
+          <li><a href="https://platform.deepseek.com/api_keys" rel="noopener noreferrer" target="_blank">DeepSeek API Keys</a></li>
+          <li><a href="https://github.com/vastsa/PI-Desktop" rel="noopener noreferrer" target="_blank">PI-Desktop</a></li>
+          <li><a href="https://www.deepseek.com/zh/harness/" rel="noopener noreferrer" target="_blank">DeepSeek Harness</a></li>
+        </ul>
+      </section>
+
+      <footer class="footer">
+        <p>内容依据总控「已确认简报」与 Research 核验（2026-10-02）。价格易变，以官网为准。</p>
+      </footer>
+    </main>
+  </div>
+
+  <button type="button" id="to-top" aria-label="回到顶部">↑</button>
+  <script src="js/main.js"></script>
+</body>
+</html>
